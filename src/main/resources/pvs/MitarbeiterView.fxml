@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pvs.MitarbeiterController">
+
+    <children>
+
+        <TableView fx:id="tblMitarbeiter"
+                   layoutX="69.0" layoutY="102.0"
+                   prefHeight="600" prefWidth="800.0">
+
+            <columns>
+                <TableColumn fx:id="colId" text="Id" prefWidth="80"/>
+                <TableColumn fx:id="colNachname" text="Nachname" prefWidth="80"/>
+                <TableColumn fx:id="colVorname" text="Vorname" prefWidth="80"/>
+                <TableColumn fx:id="colPersonallnummer" text="Personalnummer" prefWidth="80"/>
+                <TableColumn fx:id="colStrasse" text="Straße" prefWidth="80"/>
+                <TableColumn fx:id="colHausnummer" text="Hausnummer" prefWidth="80"/>
+                <TableColumn fx:id="colGeburtsdatum" text="Geburtsdatum" prefWidth="80"/>
+                <TableColumn fx:id="colOrt" text="Ort" prefWidth="80"/>
+                <TableColumn fx:id="colRessort" text="Ressort" prefWidth="80"/>
+                <TableColumn fx:id="colVertragstyp" text="Vertragstyp" prefWidth="80"/>
+            </columns>
+
+        </TableView>
+
+        <TextField fx:id="txtEingabe" promptText="Mitarbeiter suchen" layoutX="220.0" layoutY="59.0" prefWidth="200.0"/>
+        <TextField fx:id="txtId" promptText="Mitarbeiter-ID" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtNachname" promptText="Nachname" layoutX="69.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtVorname" promptText="Vorname" layoutX="249.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtPersonalnummer" promptText="Personalnummer" layoutX="249.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtStrasse" promptText="Straße" layoutX="429.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtHausnummer" promptText="Hausnummer" layoutX="429.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtGeburtsdatum" promptText="Geburtsdatum" layoutX="609.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtOrt" promptText="Ort-ID" layoutX="609.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtRessort" promptText="Ressort-ID" layoutX="789.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtVertragstyp" promptText="Vertragstyp-ID" layoutX="789.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <Label layoutX="69.0" layoutY="59.0" text="Mitarbeiter">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button layoutX="430.0" layoutY="59.0"
+                text="Einfügen" onAction="#einfuegen"/>
+
+        <Button layoutX="520.0" layoutY="59.0"
+                text="Ändern" onAction="#aendern"/>
+
+        <Button layoutX="600.0" layoutY="59.0"
+                text="Löschen" onAction="#loeschen"/>
+
+        <Button layoutX="680.0" layoutY="59.0"
+                text="Suche" onAction="#suchen"/>
+
+    </children>
+</AnchorPane>
