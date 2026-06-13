@@ -1,11 +1,12 @@
 package pvs;
 
+import DAO.OrteDAO;
+import Klassen.Ort;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 
 public class MitarbeiterController {
 
@@ -95,7 +96,7 @@ public class MitarbeiterController {
                 strasse,
                 hausnummer,
                 geburtsdatum,
-                MitarbeiterDAO.getByOrt(ort),       // da Foreign Key
+                OrteDAO.getOrtById(ort),       // da Foreign Key
                 MitarbeiterDAO.getByRessort(ressort),
                 MitarbeiterDAO.getByVertragstyp(vertragstyp)
         );
@@ -135,7 +136,7 @@ public class MitarbeiterController {
                 strasse,
                 hausnummer,
                 geburtsdatum,
-                MitarbeiterDAO.getByOrt(ort),
+                OrteDAO.getOrtById(ort),
                 MitarbeiterDAO.getByRessort(ressort),
                 MitarbeiterDAO.getByVertragstyp(vertragstyp)
         );

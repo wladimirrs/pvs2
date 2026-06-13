@@ -2,6 +2,7 @@ package pvs;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DB {
 
@@ -9,7 +10,7 @@ public class DB {
     private static final String USER = "root";
     private static final String PASS = "";
 
-    public static Connection getConnection() throws Exception {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
 }

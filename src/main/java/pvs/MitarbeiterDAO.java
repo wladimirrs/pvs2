@@ -1,5 +1,6 @@
 package pvs;
 
+import Controller.OrteController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -23,7 +24,7 @@ public class MitarbeiterDAO {
                         rs.getString("strasse"),
                         rs.getString("hausnummer"),
                         rs.getString("geburtsdatum"),
-                        Ort.fromId(rs.getInt("ort")),
+                        OrteController.uebergebeOrt(rs.getInt("ort")),
                         Ressort.fromId(rs.getInt("ressort")),
                         Vertragstyp.fromId(rs.getInt("vertragstyp"))
                 );
@@ -131,24 +132,7 @@ public class MitarbeiterDAO {
 
 
 
-    public static Ort getByOrt(int id) {
-        String sql = "SELECT * FROM orte WHERE id = ?";
-        try (Connection con = DB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Ort(
-                        rs.getInt("id"),
-                        rs.getString("plz"),
-                        rs.getString("ortsname")
-                );
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     public static Ressort getByRessort(int id) {
         String sql = "SELECT * FROM ressorts WHERE id = ?";

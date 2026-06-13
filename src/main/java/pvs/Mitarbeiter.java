@@ -1,5 +1,6 @@
 package pvs;
 
+import Klassen.Ort;
 import javafx.beans.property.*;
 
 public class Mitarbeiter {
