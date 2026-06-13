@@ -113,23 +113,7 @@ public class MitarbeiterDAO {
 
 
 
-    public static AlleProjekte getByProjekt(int id) {       // Projektid mit Bezeichnung
-        String sql = "SELECT * FROM projekte WHERE id = ?";
-        try (Connection con = DB.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new AlleProjekte(
-                        rs.getInt("id"),
-                        rs.getString("bezeichnung")
-                );
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
 
 
