@@ -2,6 +2,7 @@ package pvs;
 
 import Klassen.Ort;
 import Klassen.Ressort;
+import Klassen.Vertragstyp;
 import javafx.beans.property.*;
 
 public class Mitarbeiter {

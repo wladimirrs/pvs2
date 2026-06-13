@@ -4,6 +4,7 @@ import DAO.OrteDAO;
 import DAO.RessortsDAO;
 import Klassen.Ort;
 import Klassen.Ressort;
+import Klassen.Vertragstyp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
