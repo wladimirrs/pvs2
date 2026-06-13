@@ -92,14 +92,15 @@ public class OrteController {
             tblOrte.setItems(daten);
             return;
         }
-        ObservableList<Ort> gefiltert = FXCollections.observableArrayList();
+        ObservableList<Ort> gefiltert = FXCollections.observableArrayList(
                 daten.stream()
                         .filter(t ->
                                 (t.getId() != 0 && String.valueOf(t.getId()).contains(query)) ||
                                 (t.getPlz() != null && t.getPlz().toLowerCase().contains(query)) ||
-                                (t.getOrtsname() != null && toString().toLowerCase().contains(query))
+                                (t.getOrtsname() != null && t.getOrtsname().toLowerCase().contains(query))
                         )
-                        .toList();
+                        .toList()
+        );
         tblOrte.setItems(gefiltert);
     }
 
@@ -116,28 +117,6 @@ public class OrteController {
                 o.getOrtsname()
         );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

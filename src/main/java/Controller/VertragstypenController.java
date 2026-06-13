@@ -108,26 +108,4 @@ public class VertragstypenController {
         );
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -3,6 +3,7 @@ package Controller;
 import DAO.LeitungDAO;
 import DAO.OrteDAO;
 import Klassen.Leitung;
+import Klassen.Ort;
 import Klassen.Projekt;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -120,10 +121,10 @@ public class LeitungController {
                 daten.stream()
                         .filter(t ->
                                 (t.getId() != 0 && String.valueOf(t.getId()).contains(query)) ||
-                                (t.getProjekt_id() != null && t.getProjekt_id().toString().contains(query)) ||
-                                        (t.getMitarbeiter_id() != null && t.getMitarbeiter_id().toString().contains(query)) ||
-                                        (t.getVon() != null && t.getVon().toLowerCase().toLowerCase().contains(query)) ||
-                                        (t.getBis() != null && t.getBis().toLowerCase().toLowerCase().contains(query))
+                                        (t.getProjekt_id() != null && String.valueOf(t.getProjekt_id()).contains(query)) ||
+                                        (t.getMitarbeiter_id() != null && String.valueOf(t.getMitarbeiter_id()).contains(query)) ||
+                                        (t.getVon() != null && t.getVon().toLowerCase().contains(query)) ||
+                                        (t.getBis() != null && t.getBis().toLowerCase().contains(query))
                         )
                         .toList()
         );

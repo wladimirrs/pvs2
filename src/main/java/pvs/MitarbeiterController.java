@@ -1,5 +1,6 @@
 package pvs;
 
+import Controller.VertragstypenController;
 import DAO.OrteDAO;
 import DAO.RessortsDAO;
 import DAO.VertragstypenDAO;
@@ -102,7 +103,7 @@ public class MitarbeiterController {
                 geburtsdatum,
                 OrteDAO.getOrtById(ort),       // da Foreign Key
                 RessortsDAO.getRessortById(ressort),
-                MitarbeiterDAO.getByVertragstyp(vertragstyp)
+                VertragstypenDAO.getVertragstypById(vertragstyp)
         );
         MitarbeiterDAO.insert(m);
         daten.setAll(MitarbeiterDAO.getAll());
@@ -142,7 +143,7 @@ public class MitarbeiterController {
                 geburtsdatum,
                 OrteDAO.getOrtById(ort),
                 RessortsDAO.getRessortById(ressort),
-                MitarbeiterDAO.getByVertragstyp(vertragstyp)
+                VertragstypenDAO.getVertragstypById(vertragstyp)
         );
         MitarbeiterDAO.update(m);
         daten.setAll(MitarbeiterDAO.getAll());

@@ -26,6 +26,8 @@ public class Leitung {
         this.bis = bis;
     }
 
+    public Leitung () { }
+
 
     public int getId() {                    // getter und setter
         return id;

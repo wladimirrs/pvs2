@@ -2,6 +2,7 @@ package pvs;
 
 import Controller.OrteController;
 import Controller.RessortsController;
+import Controller.VertragstypenController;
 import Klassen.Vertragstyp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +29,7 @@ public class MitarbeiterDAO {
                         rs.getString("geburtsdatum"),
                         OrteController.uebergebeOrt(rs.getInt("ort")),
                         RessortsController.uebergebeRessort(rs.getInt("ressort")),
-                        Vertragstyp.fromId(rs.getInt("vertragstyp"))
+                        VertragstypenController.uebergebeVertragstyp(rs.getInt("vertragstyp"))
                 );
                 list.add(m);
             }
