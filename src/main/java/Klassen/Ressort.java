@@ -1,17 +1,16 @@
-package pvs;
+package Klassen;
 
 public class Ressort {
 
-    private int id;
+    private int id; // Attribute
     private String bezeichnung;
 
-    public Ressort(int id, String bezeichnung) {
+    public Ressort(int id, String bezeichnung) {    // Konstruktoren
         this.id = id;
         this.bezeichnung = bezeichnung;
     }
 
     public Ressort() {}
-
     public Ressort (String bezeichnung) {
         this.bezeichnung = bezeichnung;
     }
@@ -23,25 +22,16 @@ public class Ressort {
 
     public int getId() {
         return id;
-    }
+    }   // getter und setter
     public String getBezeichnung() {
         return bezeichnung;
     }
 
-
-
-
-
-    public static Ressort fromId(int id) {
-        Ressort r = MitarbeiterDAO.getByRessort(id);
-        if (r == null) {
-            throw new IllegalArgumentException(
-                    "Ungültige Aussteller-ID: " + id);
-        }
-        return new Ressort(
-                r.getId(),
-                r.getBezeichnung()
-        );
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setBezeichnung(String bezeichnung) {
+        this.bezeichnung = bezeichnung;
     }
 
     @Override

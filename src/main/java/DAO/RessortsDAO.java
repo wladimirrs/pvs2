@@ -1,28 +1,27 @@
 package DAO;
 
-import Klassen.Ort;
+import Klassen.Ressort;
 import pvs.DB;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrteDAO {
+public class RessortsDAO {
 
 
-    public static List<Ort> getAll() {  // Suche
-        List<Ort> list = new ArrayList<>();
-        String sql = "SELECT * FROM orte";
+    public static List<Ressort> getAll() {  // Suche
+        List<Ressort> list = new ArrayList<>();
+        String sql = "SELECT * FROM ressorts";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                Ort o = new Ort(
+                Ressort r = new Ressort(
                         rs.getInt("id"),
-                        rs.getString("plz"),
-                        rs.getString("ortsname")
+                        rs.getString("bezeichnung")
                 );
-                list.add(o);
+                list.add(r);
             }
         } catch (SQLException e) {
             System.out.println("Fehler bei der Suche: " + e.getMessage());
@@ -31,7 +30,7 @@ public class OrteDAO {
     }
 
     public static void delete(int id) { // Löschen
-        String sql = "DELETE FROM orte WHERE id = ?";
+        String sql = "DELETE FROM ressorts WHERE id = ?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -42,12 +41,11 @@ public class OrteDAO {
     }
 
 
-    public static void insert(Ort o) {  // Einfügen
-        String sql = "INSERT INTO orte (plz, ortsname) VALUES (?, ?)";
+    public static void insert(Ressort r) {  // Einfügen
+        String sql = "INSERT INTO ressorts (bezeichnung) VALUES (?)";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, o.getPlz());
-            ps.setString(2, o.getOrtsname());
+            ps.setString(1, r.getBezeichnung());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fehler beim Einfügen: " + e.getMessage());
@@ -55,13 +53,12 @@ public class OrteDAO {
     }
 
 
-    public static void update(Ort o) {  // Ändern
-        String sql = "UPDATE orte SET plz=?, ortsname=? WHERE id=?";
+    public static void update(Ressort r) {  // Ändern
+        String sql = "UPDATE ressorts SET bezeichnung=? WHERE id=?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, o.getPlz());
-            ps.setString(2, o.getOrtsname());
-            ps.setInt(3, o.getId());
+            ps.setString(1, r.getBezeichnung());
+            ps.setInt(2, r.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fehler beim Ändern: " + e.getMessage());
@@ -69,17 +66,16 @@ public class OrteDAO {
     }
 
 
-    public static Ort getOrtById(int id) {  // Ort suchen nach Id
-        String sql = "SELECT * FROM orte WHERE id = ?";
+    public static Ressort getRessortById(int id) {  // Ressort suchen nach Id
+        String sql = "SELECT * FROM ressorts WHERE id = ?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new Ort(
+                return new Ressort(
                         rs.getInt("id"),
-                        rs.getString("plz"),
-                        rs.getString("ortsname")
+                        rs.getString("bezeichnung")
                 );
             }
         } catch (SQLException e) {
@@ -87,8 +83,6 @@ public class OrteDAO {
         }
         return null;
     }
-
-
 
 
 }

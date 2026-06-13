@@ -1,5 +1,7 @@
-package pvs;
+package Controller;
 
+import DAO.RessortsDAO;
+import Klassen.Ressort;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -10,34 +12,29 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 public class RessortsController {
 
-    @FXML private Button btnAendern3;
-    @FXML private Button btnEinfuegen3;
-    @FXML private Button btnLoeschen3;
-    @FXML private Button btnSuchen3;
-    @FXML private TextField txtEingabe3;
+    @FXML private Button btnAendern;    // Buttons
+    @FXML private Button btnEinfuegen;
+    @FXML private Button btnLoeschen;
+    @FXML private Button btnSuchen;
 
+    @FXML private TextField txtEingabe; // Texteingabe
     @FXML private TextField txtId;
     @FXML private TextField txtBezeichnung;
 
-
-
-    @FXML private TableView<Ressort> tblRessorts;
-
+    @FXML private TableView<Ressort> tblRessorts;   // Tabelle
     @FXML private TableColumn<Ressort, Integer> colId;
     @FXML private TableColumn<Ressort, String> colBezeichnung;
-    private ObservableList<Ressort> daten;
 
 
+    private ObservableList<Ressort> daten;  // befüllt Tabelle
     @FXML
     public void initialize() {
-
         colId.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getId()).asObject());
         colBezeichnung.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getBezeichnung()));
-        daten = RessortsDAO.getAll();
+        daten = FXCollections.observableArrayList(RessortsDAO.getAll());
         tblRessorts.setItems(daten);
     }
 
@@ -46,7 +43,7 @@ public class RessortsController {
 
 
     @FXML
-    void aendern3(ActionEvent event) {
+    void aendern(ActionEvent event) {   // update
         int id = Integer.parseInt(txtId.getText());
         String bezeichnung = txtBezeichnung.getText();
         Ressort r = new Ressort(
@@ -58,7 +55,7 @@ public class RessortsController {
     }
 
     @FXML
-    void einfuegen3(ActionEvent event) {
+    void einfuegen(ActionEvent event) { // insert
         String bezeichnung = txtBezeichnung.getText();
         Ressort r = new Ressort(
                 bezeichnung
@@ -72,7 +69,7 @@ public class RessortsController {
 
 
     @FXML
-    void loeschen3(ActionEvent event) {
+    void loeschen(ActionEvent event) {  // delete
         Ressort selected = tblRessorts.getSelectionModel().getSelectedItem();
         if (selected != null) {
             RessortsDAO.delete(selected.getId());
@@ -82,8 +79,8 @@ public class RessortsController {
 
 
     @FXML
-    void suchen3(ActionEvent event) {
-        String query = txtEingabe3.getText().toLowerCase();
+    void suchen(ActionEvent event) {    // Suche
+        String query = txtEingabe.getText().toLowerCase();
         if (query.isBlank()) {
             tblRessorts.setItems(daten);
             return;
@@ -91,7 +88,8 @@ public class RessortsController {
         ObservableList<Ressort> gefiltert = FXCollections.observableArrayList(
                 daten.stream()
                         .filter(t ->
-                                (t.getBezeichnung() != null && t.getBezeichnung().toString().contains(query))
+                                (t.getId() != 0 && String.valueOf(t.getId()).contains(query)) ||
+                                (t.getBezeichnung() != null && t.getBezeichnung().toLowerCase().contains(query))
                         )
                         .toList()
         );
@@ -99,7 +97,17 @@ public class RessortsController {
     }
 
 
-
+    public static Ressort uebergebeRessort(int id) {    // Ressort übergeben
+        Ressort r = RessortsDAO.getRessortById(id);
+        if (r == null) {
+            throw new IllegalArgumentException(
+                    "Ungültige Ressort-ID: " + id);
+        }
+        return new Ressort(
+                r.getId(),
+                r.getBezeichnung()
+        );
+    }
 
 
 

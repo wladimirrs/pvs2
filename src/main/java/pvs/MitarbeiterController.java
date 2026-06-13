@@ -1,7 +1,9 @@
 package pvs;
 
 import DAO.OrteDAO;
+import DAO.RessortsDAO;
 import Klassen.Ort;
+import Klassen.Ressort;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -97,7 +99,7 @@ public class MitarbeiterController {
                 hausnummer,
                 geburtsdatum,
                 OrteDAO.getOrtById(ort),       // da Foreign Key
-                MitarbeiterDAO.getByRessort(ressort),
+                RessortsDAO.getRessortById(ressort),
                 MitarbeiterDAO.getByVertragstyp(vertragstyp)
         );
         MitarbeiterDAO.insert(m);
@@ -137,7 +139,7 @@ public class MitarbeiterController {
                 hausnummer,
                 geburtsdatum,
                 OrteDAO.getOrtById(ort),
-                MitarbeiterDAO.getByRessort(ressort),
+                RessortsDAO.getRessortById(ressort),
                 MitarbeiterDAO.getByVertragstyp(vertragstyp)
         );
         MitarbeiterDAO.update(m);
