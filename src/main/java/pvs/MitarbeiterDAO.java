@@ -92,8 +92,8 @@ public class MitarbeiterDAO {
 
 
 
-    public static Mitarbeiter getById(int id) {
-        String sql = "SELECT * FROM mitarbeiter WHERE id = ?";
+    public static Mitarbeiter getMitarbeiterById(int id) {    // Vertragstyp suchen nach Id
+        String sql = "SELECT * FROM vertragstypen WHERE id = ?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -103,11 +103,10 @@ public class MitarbeiterDAO {
                         rs.getInt("id"),
                         rs.getString("nachname"),
                         rs.getString("vorname")
-            );
+                );
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Fehler bei der Suche anhand der ID: " + e.getMessage());
         }
         return null;
     }

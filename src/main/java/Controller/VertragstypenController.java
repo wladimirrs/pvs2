@@ -88,7 +88,7 @@ public class VertragstypenController {
                 daten.stream()
                         .filter(t ->
                                 (t.getId() != 0 && String.valueOf(t.getId()).contains(query)) ||
-                                (t.getBezeichnung() != null && t.getBezeichnung().toString().contains(query))
+                                (t.getBezeichnung() != null && t.getBezeichnung().toLowerCase().contains(query))
                         )
                         .toList()
         );
@@ -97,7 +97,7 @@ public class VertragstypenController {
 
 
     public static Vertragstyp uebergebeVertragstyp(int id) {    // Vertragstyp übergeben
-        Vertragstyp v = VertragstypenDAO.getByVertragstyp(id);
+        Vertragstyp v = VertragstypenDAO.getVertragstypById(id);
         if (v == null) {
             throw new IllegalArgumentException(
                     "Ungültige Vertrags-ID: " + id);

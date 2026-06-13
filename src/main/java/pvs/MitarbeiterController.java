@@ -2,6 +2,7 @@ package pvs;
 
 import DAO.OrteDAO;
 import DAO.RessortsDAO;
+import DAO.VertragstypenDAO;
 import Klassen.Ort;
 import Klassen.Ressort;
 import Klassen.Vertragstyp;
@@ -171,4 +172,19 @@ public class MitarbeiterController {
         );
         tblMitarbeiter.setItems(gefiltert);
     }
+
+    public static Mitarbeiter uebergebeMitarbeiter(int id) {    // Vertragstyp übergeben
+        Mitarbeiter m = MitarbeiterDAO.getMitarbeiterById(id);
+        if (m == null) {
+            throw new IllegalArgumentException(
+                    "Ungültige Vertrags-ID: " + id);
+        }
+        return new Mitarbeiter(
+                m.getId(),
+                m.getNachname(),
+                m.getVorname()
+        );
+    }
+
+
 }

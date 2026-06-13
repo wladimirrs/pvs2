@@ -65,7 +65,7 @@ public class VertragstypenDAO {
         }
     }
 
-    public static Vertragstyp getByVertragstyp(int id) {    // Vertragstyp suchen nach Id
+    public static Vertragstyp getVertragstypById(int id) {    // Vertragstyp suchen nach Id
         String sql = "SELECT * FROM vertragstypen WHERE id = ?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
