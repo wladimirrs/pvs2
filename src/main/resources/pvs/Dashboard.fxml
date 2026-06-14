@@ -35,13 +35,15 @@
                <children>
                   <Button fx:id="btnHome" layoutX="39.0" layoutY="108.0" mnemonicParsing="false" onAction="#loadHome" prefHeight="26.0" prefWidth="76.0" text="Home" />
                   <Button fx:id="btnMitarbeiter" layoutX="39.0" layoutY="158.0" mnemonicParsing="false" onAction="#loadMitarbeiter" text="Mitarbeiter" />
-                  <Button fx:id="btnTickets" layoutX="39.0" layoutY="208.0" mnemonicParsing="false" onAction="#loadTickets" prefHeight="26.0" prefWidth="73.0" text="Tickets" />
-                  <Button fx:id="btnProjekte" layoutX="39.0" layoutY="258.0" mnemonicParsing="false" onAction="#loadProjekte" prefHeight="26.0" prefWidth="73.0" text="Leitung" />
-                  <Button fx:id="btnProjektdaten" layoutX="39.0" layoutY="308.0" mnemonicParsing="false" onAction="#loadProjektdaten" prefHeight="26.0" prefWidth="73.0" text="Projekte" />
-                  <Button fx:id="btnOrte" layoutX="39.0" layoutY="358.0" mnemonicParsing="false" onAction="#loadOrte" prefHeight="26.0" prefWidth="73.0" text="Orte" />
-                  <Button fx:id="btnRessorts" layoutX="39.0" layoutY="408.0" mnemonicParsing="false" onAction="#loadRessorts" prefHeight="26.0" prefWidth="73.0" text="Ressorts" />
-                  <Button fx:id="btnVertragstypen" layoutX="39.0" layoutY="458.0" mnemonicParsing="false" onAction="#loadVertragstypen" prefHeight="26.0" prefWidth="73.0" text="Verträge" />
-                  <Button fx:id="btnBeenden" layoutX="39.0" layoutY="528.0" mnemonicParsing="false" onAction="#beenden" prefHeight="26.0" prefWidth="76.0" text="Beenden" />
+                  <Button fx:id="btnBefugnis" layoutX="39.0" layoutY="208.0" mnemonicParsing="false" onAction="#loadBefugnis" prefHeight="26.0" prefWidth="73.0" text="Befugnis" />
+                  <Button fx:id="btnProjekte" layoutX="39.0" layoutY="258.0" mnemonicParsing="false" onAction="#loadProjekte" prefHeight="26.0" prefWidth="73.0" text="Projekte" />
+                  <Button fx:id="btnLeitung" layoutX="39.0" layoutY="308.0" mnemonicParsing="false" onAction="#loadLeitung" prefHeight="26.0" prefWidth="73.0" text="Leitung" />
+                  <Button fx:id="btnTickets" layoutX="39.0" layoutY="358.0" mnemonicParsing="false" onAction="#loadTickets" prefHeight="26.0" prefWidth="73.0" text="Tickets" />
+                  <Button fx:id="btnOrte" layoutX="39.0" layoutY="408.0" mnemonicParsing="false" onAction="#loadOrte" prefHeight="26.0" prefWidth="73.0" text="Orte" />
+                  <Button fx:id="btnRessorts" layoutX="39.0" layoutY="458.0" mnemonicParsing="false" onAction="#loadRessorts" prefHeight="26.0" prefWidth="73.0" text="Ressorts" />
+                  <Button fx:id="btnVertragstypen" layoutX="39.0" layoutY="508.0" mnemonicParsing="false" onAction="#loadVertragstypen" prefHeight="26.0" prefWidth="73.0" text="Verträge" />
+                  <Button fx:id="btnRollen" layoutX="39.0" layoutY="558.0" mnemonicParsing="false" onAction="#loadRollen" prefHeight="26.0" prefWidth="73.0" text="Rollen" />
+                  <Button fx:id="btnBeenden" layoutX="39.0" layoutY="728.0" mnemonicParsing="false" onAction="#beenden" prefHeight="26.0" prefWidth="76.0" text="Beenden" />
                   <ImageView fitHeight="72.0" fitWidth="110.0" layoutX="37.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
