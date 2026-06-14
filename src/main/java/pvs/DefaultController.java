@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class DefaultController {
 
-    @FXML
+    @FXML   // Nur Login und Registrierung
     private Button btnRegister;
 
     @FXML

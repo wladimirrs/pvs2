@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 
 public class RegisterController {
 
-    @FXML
+    @FXML   // Buttons
     private Button btnRegister;
 
     @FXML
@@ -31,7 +31,7 @@ public class RegisterController {
 
 
 
-    @FXML private TextField txtEmail;
+    @FXML private TextField txtEmail;   // Passwortfeld für verdeckte Eingabe
     @FXML private PasswordField txtPasswort;
 
 
@@ -41,11 +41,11 @@ public class RegisterController {
     @FXML
     void beenden(ActionEvent event) { // App beenden
         System.exit(0);
-    }
+    }   // Beenden
 
 
     @FXML
-    void loadLogin(ActionEvent event) {
+    void loadLogin(ActionEvent event) { // zum Login
         ViewLoader loader = new ViewLoader();
         Pane view = loader.loadView("LoginView");
 
@@ -61,7 +61,7 @@ public class RegisterController {
     }
 
     @FXML
-    void loadRegister(ActionEvent event) {
+    void loadRegister(ActionEvent event) {  // Zur Registrierung
         ViewLoader loader = new ViewLoader();
         Pane view = loader.loadView("RegisterView");
 
@@ -82,10 +82,11 @@ public class RegisterController {
 
     @FXML
     void loadAusfuehren(ActionEvent event) throws Exception {       // Registrierung durchführen
-        boolean ok = NutzerDAO.register(txtEmail.getText(), txtPasswort.getText());
-        if (ok) {
+
+        boolean ok = NutzerDAO.register(txtEmail.getText(), txtPasswort.getText()); // Email und PW in die Tabelle schreiben
+        if (ok) {                                                               // wenn erfolgreich, zum Login weitergeleitet
             ViewLoader viewLoader = new ViewLoader();
-            Pane view = viewLoader.loadView("LoginView");   // Zum Login weitergeleitet
+            Pane view = viewLoader.loadView("LoginView");
             mainPane.getChildren().clear();
             mainPane.getChildren().add(view);
 

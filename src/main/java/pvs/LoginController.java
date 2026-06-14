@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    @FXML
+    @FXML   // Buttons
     private Button btnRegister;
 
     @FXML
@@ -45,7 +45,7 @@ public class LoginController {
     @FXML
     void beenden(ActionEvent event) { // App beenden
         System.exit(0);
-    }
+    }   // Beenden
 
 
     @FXML
@@ -83,8 +83,8 @@ public class LoginController {
     @FXML
     void loadAusfuehren(ActionEvent event) throws Exception {   // Login durchführen
 
-        boolean ok = NutzerDAO.login(txtEmail.getText(), txtPasswort.getText());
-        if (ok) {
+        boolean ok = NutzerDAO.login(txtEmail.getText(), txtPasswort.getText());    // prüfen, ob es genau die Eingaben gibt
+        if (ok) {                                                               // wenn ja, zum Dashboard weitergeleitet
             ViewLoader viewLoader = new ViewLoader();
             Pane view = viewLoader.loadView("Dashboard");
             mainPane.getChildren().clear();

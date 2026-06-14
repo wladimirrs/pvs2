@@ -15,8 +15,8 @@ public class NutzerDAO {
                 ps.setString(2, passwort);
                 ps.executeUpdate();
                 return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Fehler bei der Registrierung: " + e.getMessage());
             return false;
         }
     }
@@ -31,8 +31,8 @@ public class NutzerDAO {
                 ps.setString(2, passwort);
             ResultSet rs = ps.executeQuery();
             return rs.next();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Fehler bei der Anmdeldung: " + e.getMessage());
         }
         return false;
     }

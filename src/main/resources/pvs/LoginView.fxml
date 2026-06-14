@@ -14,7 +14,7 @@
 <?import javafx.scene.control.PasswordField?>
 <BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pvs.LoginController">
     <top>
-        <HBox prefHeight="100.0" prefWidth="1150.0" style="-fx-background-color: b3dddd;" BorderPane.alignment="CENTER">
+        <HBox prefHeight="100.0" prefWidth="1150.0" style="-fx-background-color: d15677;" BorderPane.alignment="CENTER">
             <children>
                 <AnchorPane prefHeight="100.0" prefWidth="1150">
                     <children>
@@ -34,17 +34,17 @@
         </HBox>
     </top>
     <left>
-        <VBox prefHeight="800.0" prefWidth="149.0" style="-fx-background-color: e3f1ef;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="800.0" prefWidth="149.0" style="-fx-background-color: d1a9b4;" BorderPane.alignment="CENTER">
             <children>
                 <AnchorPane prefHeight="800.0" prefWidth="149.0">
                     <children>
-                        <Button fx:id="btnBeenden" layoutX="39.0" layoutY="328.0" mnemonicParsing="false" onAction="#beenden" prefHeight="26.0" prefWidth="76.0" text="Beenden" />
+                        <Button fx:id="btnBeenden" layoutX="39.0" layoutY="728.0" mnemonicParsing="false" onAction="#beenden" prefHeight="26.0" prefWidth="76.0" text="Beenden" />
                     </children>
                 </AnchorPane>
             </children>
         </VBox>
     </left>
     <center>
-        <AnchorPane fx:id="contentPane" prefHeight="800.0" prefWidth="1001.0" style="-fx-background-color: c3ffe1;" BorderPane.alignment="CENTER" />
+        <AnchorPane fx:id="contentPane" prefHeight="800.0" prefWidth="1001.0" style="-fx-background-color: 80bed1;" BorderPane.alignment="CENTER" />
     </center>
 </BorderPane>
