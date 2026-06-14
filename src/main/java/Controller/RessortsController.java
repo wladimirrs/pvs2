@@ -97,7 +97,7 @@ public class RessortsController {
     }
 
 
-    public static Ressort uebergebeRessort(int id) {    // Ressort übergeben
+    /*public static Ressort uebergebeRessort(int id) {    // Ressort übergeben
         Ressort r = RessortsDAO.getRessortById(id);
         if (r == null) {
             throw new IllegalArgumentException(
@@ -107,7 +107,7 @@ public class RessortsController {
                 r.getId(),
                 r.getBezeichnung()
         );
-    }
+    }*/
 
 
 

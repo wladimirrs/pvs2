@@ -138,7 +138,7 @@ public class MitarbeiterController {
                 vertragstyp
         );
 
-        MitarbeiterDAO.insert(m);
+        MitarbeiterDAO.update(m);
         daten.setAll(MitarbeiterDAO.getAll());
     }
 
@@ -168,7 +168,7 @@ public class MitarbeiterController {
         tblMitarbeiter.setItems(gefiltert);
     }
 
-    public static Mitarbeiter uebergebeMitarbeiter(int id) {    // Mitarbeiter übergeben
+    /*public static Mitarbeiter uebergebeMitarbeiter(int id) {    // Mitarbeiter übergeben
         Mitarbeiter m = MitarbeiterDAO.getMitarbeiterById(id);
         if (m == null) {
             throw new IllegalArgumentException(
@@ -179,7 +179,7 @@ public class MitarbeiterController {
                 m.getNachname(),
                 m.getVorname()
         );
-    }
+    }*/
 
 
 }

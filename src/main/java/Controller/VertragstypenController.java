@@ -96,7 +96,7 @@ public class VertragstypenController {
     }
 
 
-    public static Vertragstyp uebergebeVertragstyp(int id) {    // Vertragstyp übergeben
+    /*public static Vertragstyp uebergebeVertragstyp(int id) {    // Vertragstyp übergeben
         Vertragstyp v = VertragstypenDAO.getVertragstypById(id);
         if (v == null) {
             throw new IllegalArgumentException(
@@ -106,6 +106,6 @@ public class VertragstypenController {
                 v.getId(),
                 v.getBezeichnung()
         );
-    }
+    }*/
 
 }

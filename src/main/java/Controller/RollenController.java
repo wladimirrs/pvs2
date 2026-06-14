@@ -97,7 +97,7 @@ public class RollenController {
     }
 
 
-    public static Rolle uebergebeRolle(int id) {    // Ressort übergeben
+    /*public static Rolle uebergebeRolle(int id) {    // Ressort übergeben
         Rolle r = RollenDAO.getRolleById(id);
         if (r == null) {
             throw new IllegalArgumentException(
@@ -107,7 +107,7 @@ public class RollenController {
                 r.getId(),
                 r.getBezeichnung()
         );
-    }
+    }*/
 
 
 

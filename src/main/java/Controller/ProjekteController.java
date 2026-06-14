@@ -121,7 +121,7 @@ public class ProjekteController {
     }
 
 
-    public static Projekt uebergebeProjekt(int id) {    // Projekt übergeben
+    /*public static Projekt uebergebeProjekt(int id) {    // Projekt übergeben
         Projekt p = ProjekteDAO.getProjektById(id);
         if (p == null) {
             throw new IllegalArgumentException(
@@ -131,7 +131,7 @@ public class ProjekteController {
                 p.getId(),
                 p.getBezeichnung()
         );
-    }
+    }*/
 
 
 

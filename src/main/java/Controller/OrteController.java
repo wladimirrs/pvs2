@@ -105,7 +105,7 @@ public class OrteController {
     }
 
 
-    public static Ort uebergebeOrt(int id) {      // für Controller
+    /*public static Ort uebergebeOrt(int id) {      // für Controller
         Ort o = OrteDAO.getOrtById(id);
         if (o == null) {
             throw new IllegalArgumentException(
@@ -116,7 +116,7 @@ public class OrteController {
                 o.getPlz(),
                 o.getOrtsname()
         );
-    }
+    }*/
 
 
 }

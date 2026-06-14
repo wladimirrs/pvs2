@@ -13,7 +13,7 @@ public class OrteDAO {
     public static List<Ort> getAll() {  // Suche
         List<Ort> list = new ArrayList<>();
         String sql = "SELECT * FROM orte";
-        try (Connection con = DB.getConnection();
+        try (Connection con = DB.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -32,7 +32,7 @@ public class OrteDAO {
 
     public static void delete(int id) { // Löschen
         String sql = "DELETE FROM orte WHERE id = ?";
-        try (Connection con = DB.getConnection();
+        try (Connection con = DB.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -44,7 +44,7 @@ public class OrteDAO {
 
     public static void insert(Ort o) {  // Einfügen
         String sql = "INSERT INTO orte (plz, ortsname) VALUES (?, ?)";
-        try (Connection con = DB.getConnection();
+        try (Connection con = DB.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, o.getPlz());
             ps.setString(2, o.getOrtsname());
@@ -57,7 +57,7 @@ public class OrteDAO {
 
     public static void update(Ort o) {  // Ändern
         String sql = "UPDATE orte SET plz=?, ortsname=? WHERE id=?";
-        try (Connection con = DB.getConnection();
+        try (Connection con = DB.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, o.getPlz());
             ps.setString(2, o.getOrtsname());
@@ -71,7 +71,7 @@ public class OrteDAO {
 
     public static Ort getOrtById(int id) {  // Ort suchen nach Id
         String sql = "SELECT * FROM orte WHERE id = ?";
-        try (Connection con = DB.getConnection();
+        try (Connection con = DB.getInstance().getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
