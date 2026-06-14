@@ -49,8 +49,8 @@ public class BefugnisDAO {
         String sql = "INSERT INTO mitarbeiter_projekte (projekt_id, rolle) VALUES (?, ?)";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, b.getProjekt_id());
-            ps.setObject(2, b.getRolle());
+            ps.setInt(1, b.getProjekt_id().getId());
+            ps.setInt(2, b.getRolle().getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fehler beim Einfügen: " + e.getMessage());
@@ -62,9 +62,9 @@ public class BefugnisDAO {
         String sql = "UPDATE mitarbeiter_projekte SET projekt_id=?, rolle=? WHERE mitarbeiter_id=?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, b.getProjekt_id());
-            ps.setObject(2, b.getRolle());
-            ps.setObject(3, b.getMitarbeiter_id());
+            ps.setInt(1, b.getProjekt_id().getId());
+            ps.setInt(2, b.getRolle().getId());
+            ps.setInt(3, b.getMitarbeiter_id().getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fehler beim Ändern: " + e.getMessage());

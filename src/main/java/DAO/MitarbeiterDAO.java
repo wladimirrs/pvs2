@@ -64,9 +64,9 @@ public class MitarbeiterDAO {
             ps.setString(4, m.getStrasse());
             ps.setString(5, m.getHausnummer());
             ps.setString(6, m.getGeburtsdatum());
-            ps.setObject(7, m.getOrt());
-            ps.setObject(8, m.getRessort());
-            ps.setObject(9, m.getVertragstyp());
+            ps.setInt(7, m.getOrt().getId());
+            ps.setInt(8, m.getRessort().getId());
+            ps.setInt(9, m.getVertragstyp().getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fehler beim Einfügen: " + e.getMessage());
@@ -84,9 +84,9 @@ public class MitarbeiterDAO {
             ps.setString(4, m.getStrasse());
             ps.setString(5, m.getHausnummer());
             ps.setString(6, m.getGeburtsdatum());
-            ps.setObject(7, m.getOrt());
-            ps.setObject(8, m.getRessort());
-            ps.setObject(9, m.getVertragstyp());
+            ps.setInt(7, m.getOrt().getId());
+            ps.setInt(8, m.getRessort().getId());
+            ps.setInt(9, m.getVertragstyp().getId());
             ps.setInt(10, m.getId());
             ps.executeUpdate();
         } catch (SQLException e) {

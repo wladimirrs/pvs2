@@ -19,7 +19,7 @@
             </columns>
         </TableView>
         <TextField fx:id="txtEingabe" promptText="Orte suchen" layoutX="220.0" layoutY="59.0" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="txtId" promptText="Ort-ID (beim Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtId" promptText="Ort-ID (w. Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtPlz" promptText="PLZ" layoutX="69.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtOrtsname" promptText="Ortsname" layoutX="269.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <Label layoutX="69.0" layoutY="59.0" text="Wohnorte">

@@ -22,7 +22,7 @@
         </columns>
       </TableView>
       <TextField fx:id="txtEingabe" promptText="Ticket suchen" layoutX="220.0" layoutY="59.0" prefHeight="26.0" prefWidth="156.0" />
-       <TextField fx:id="txtId" promptText="Ticket-ID (beim Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+       <TextField fx:id="txtId" promptText="Ticket-ID (w. Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
        <TextField fx:id="txtGrund" promptText="Grund" layoutX="69.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
        <TextField fx:id="txtZeitpunkt" promptText="Zeitpunkt" layoutX="269.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
        <TextField fx:id="txtAussteller1" promptText="Aussteller 1 ID" layoutX="269.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />

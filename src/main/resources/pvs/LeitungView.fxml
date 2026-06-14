@@ -21,7 +21,7 @@
             </columns>
         </TableView>
         <TextField fx:id="txtEingabe" promptText="Projektführung suchen" layoutX="220.0" layoutY="59.0" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="txtId" promptText="Projektleitung-ID (beim Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtId" promptText="Projektleitung-ID (w. Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtProjektId" promptText="Projekt ID" layoutX="69.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtMitarbeiterId" promptText="Mitarbeiter ID" layoutX="269.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtVon" promptText="Von" layoutX="269.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />

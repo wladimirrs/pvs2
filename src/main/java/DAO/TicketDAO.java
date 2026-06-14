@@ -52,9 +52,9 @@ public class TicketDAO {
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, t.getGrund());
             ps.setString(2, t.getZeitpunkt());
-            ps.setObject(3, t.getAussteller1());
-            ps.setObject(4, t.getAussteller2());
-            ps.setObject(5, t.getSchuldig());
+            ps.setInt(3, t.getAussteller1().getId());
+            ps.setInt(4, t.getAussteller2().getId());
+            ps.setInt(5, t.getSchuldig().getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fehler beim Einfügen: " + e.getMessage());
@@ -68,9 +68,9 @@ public class TicketDAO {
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, t.getGrund());
             ps.setString(2, t.getZeitpunkt());
-            ps.setObject(3, t.getAussteller1());
-            ps.setObject(4, t.getAussteller2());
-            ps.setObject(5, t.getSchuldig());
+            ps.setInt(3, t.getAussteller1().getId());
+            ps.setInt(4, t.getAussteller2().getId());
+            ps.setInt(5, t.getSchuldig().getId());
             ps.setInt(6, t.getId());
             ps.executeUpdate();
         } catch (SQLException e) {

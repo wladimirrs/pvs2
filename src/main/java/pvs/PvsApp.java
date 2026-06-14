@@ -10,7 +10,7 @@ public class PvsApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {                 // Im Default-Fenster starten
-        FXMLLoader fxmlLoader = new FXMLLoader(PvsApp.class.getResource("DefaultView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(PvsApp.class.getResource("/pvs/DefaultView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1150 , 900);
         stage.setResizable(false);
         stage.setTitle("Projektverwaltungssystem");

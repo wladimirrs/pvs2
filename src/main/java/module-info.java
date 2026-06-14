@@ -1,4 +1,4 @@
-module package1.pvs {
+module pvs {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;

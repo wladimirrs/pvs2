@@ -50,8 +50,8 @@ public class LeitungDAO {
         String sql = "INSERT INTO leitung (projekt_id, mitarbeiter_id, von, bis) VALUES (?, ?, ?, ?)";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, l.getProjekt_id());
-            ps.setObject(2, l.getMitarbeiter_id());
+            ps.setInt(1, l.getProjekt_id().getId());
+            ps.setInt(2, l.getMitarbeiter_id().getId());
             ps.setString(3, l.getVon());
             ps.setString(4, l.getBis());
             ps.executeUpdate();
@@ -61,15 +61,15 @@ public class LeitungDAO {
     }
 
 
-    public static void update(Leitung p) {  // Ändern
+    public static void update(Leitung l) {  // Ändern
         String sql = "UPDATE leitung SET projekt_id=?, mitarbeiter_id=?, von=?, bis=? WHERE id=?";
         try (Connection con = DB.getConnection();
             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, p.getProjekt_id());
-            ps.setObject(2, p.getMitarbeiter_id());
-            ps.setString(3, p.getVon());
-            ps.setString(4, p.getBis());
-            ps.setInt(5, p.getId());
+            ps.setInt(1, l.getProjekt_id().getId());
+            ps.setInt(2, l.getMitarbeiter_id().getId());
+            ps.setString(3, l.getVon());
+            ps.setString(4, l.getBis());
+            ps.setInt(5, l.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fehler beim Ändern: " + e.getMessage());
