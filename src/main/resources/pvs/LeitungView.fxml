@@ -9,6 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <AnchorPane prefHeight="521.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LeitungController">
     <children>
         <TableView fx:id="tblLeitung" layoutX="69.0" layoutY="102.0" prefHeight="600" prefWidth="800">
@@ -22,8 +23,8 @@
         </TableView>
         <TextField fx:id="txtEingabe" promptText="Projektführung suchen" layoutX="220.0" layoutY="59.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtId" promptText="Projektleitung-ID (w. Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="txtProjektId" promptText="Projekt ID" layoutX="69.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="txtMitarbeiterId" promptText="Mitarbeiter ID" layoutX="269.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <ChoiceBox fx:id="cbProjektId" layoutX="69.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <ChoiceBox fx:id="cbMitarbeiterId" layoutX="269.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtVon" promptText="Von" layoutX="269.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtBis" promptText="Bis" layoutX="469.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <Label layoutX="69.0" layoutY="59.0" text="Projekthistorie">

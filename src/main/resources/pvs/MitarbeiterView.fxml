@@ -37,9 +37,9 @@
         <TextField fx:id="txtStrasse" promptText="Straße" layoutX="429.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtHausnummer" promptText="Hausnummer" layoutX="429.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtGeburtsdatum" promptText="Geburtsdatum" layoutX="609.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="txtOrt" promptText="Ort-ID" layoutX="609.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="txtRessort" promptText="Ressort-ID" layoutX="789.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="txtVertragstyp" promptText="Vertragstyp-ID" layoutX="789.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <ChoiceBox fx:id="cbOrt" layoutX="609.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
+        <ChoiceBox fx:id="cbRessort" layoutX="789.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <ChoiceBox fx:id="cbVertragstyp" layoutX="789.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
         <Label layoutX="69.0" layoutY="59.0" text="Mitarbeiter">
             <font>
                 <Font name="System Bold" size="18.0" />

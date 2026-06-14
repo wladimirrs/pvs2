@@ -33,9 +33,9 @@ public class MitarbeiterController {
     @FXML private TextField txtStrasse;
     @FXML private TextField txtHausnummer;
     @FXML private TextField txtGeburtsdatum;
-    @FXML private TextField txtOrt;
-    @FXML private TextField txtRessort;
-    @FXML private TextField txtVertragstyp;
+    @FXML private ChoiceBox<Ort> cbOrt;
+    @FXML private ChoiceBox<Ressort> cbRessort;
+    @FXML private ChoiceBox<Vertragstyp> cbVertragstyp;
 
     @FXML private TableView<Mitarbeiter> tblMitarbeiter;        // Tabelle
     @FXML private TableColumn<Mitarbeiter, Integer> colId;
@@ -62,6 +62,9 @@ public class MitarbeiterController {
         colOrt.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getOrt()));
         colRessort.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getRessort()));
         colVertragstyp.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getVertragstyp()));
+        cbOrt.setItems(FXCollections.observableArrayList(OrteDAO.getAll()));
+        cbRessort.setItems(FXCollections.observableArrayList(RessortsDAO.getAll()));
+        cbVertragstyp.setItems(FXCollections.observableArrayList(VertragstypenDAO.getAll()));
         daten = FXCollections.observableArrayList(MitarbeiterDAO.getAll());
         tblMitarbeiter.setItems(daten);
     }
@@ -69,17 +72,17 @@ public class MitarbeiterController {
 
 
     @FXML
-    void einfuegen(ActionEvent event) {     // insert
+    void einfuegen(ActionEvent event) { // insert
         String nachname = txtNachname.getText();
         String vorname = txtVorname.getText();
         String personalnummer = txtPersonalnummer.getText();
         String strasse = txtStrasse.getText();
         String hausnummer = txtHausnummer.getText();
         String geburtsdatum = txtGeburtsdatum.getText();
-        int ort = Integer.parseInt(txtOrt.getText());
-        int ressort = Integer.parseInt(txtRessort.getText());
-        int vertragstyp = Integer.parseInt(txtVertragstyp.getText());
-        if (nachname == null || vorname == null || nachname.isEmpty() || vorname.isEmpty()) {
+        Ort ort = cbOrt.getValue();
+        Ressort ressort = cbRessort.getValue();
+        Vertragstyp vertragstyp = cbVertragstyp.getValue();
+        if (nachname == null || nachname.isEmpty() || vorname == null || vorname.isEmpty()) {
             return;
         }
         Mitarbeiter m = new Mitarbeiter(
@@ -89,10 +92,11 @@ public class MitarbeiterController {
                 strasse,
                 hausnummer,
                 geburtsdatum,
-                OrteController.uebergebeOrt(ort),       // da Foreign Key
-                RessortsController.uebergebeRessort(ressort),
-                VertragstypenController.uebergebeVertragstyp(vertragstyp)
+                ort,
+                ressort,
+                vertragstyp
         );
+
         MitarbeiterDAO.insert(m);
         daten.setAll(MitarbeiterDAO.getAll());
     }
@@ -115,10 +119,10 @@ public class MitarbeiterController {
         String strasse = txtStrasse.getText();
         String hausnummer = txtHausnummer.getText();
         String geburtsdatum = txtGeburtsdatum.getText();
-        int ort = Integer.parseInt(txtOrt.getText());
-        int ressort = Integer.parseInt(txtRessort.getText());
-        int vertragstyp = Integer.parseInt(txtVertragstyp.getText());
-        if (nachname == null || vorname == null || nachname.isEmpty() || vorname.isEmpty()) {
+        Ort ort = cbOrt.getValue();
+        Ressort ressort = cbRessort.getValue();
+        Vertragstyp vertragstyp = cbVertragstyp.getValue();
+        if (nachname == null || nachname.isEmpty() || vorname == null || vorname.isEmpty()) {
             return;
         }
         Mitarbeiter m = new Mitarbeiter(
@@ -129,11 +133,12 @@ public class MitarbeiterController {
                 strasse,
                 hausnummer,
                 geburtsdatum,
-                OrteController.uebergebeOrt(ort),
-                RessortsController.uebergebeRessort(ressort),
-                VertragstypenController.uebergebeVertragstyp(vertragstyp)
+                ort,
+                ressort,
+                vertragstyp
         );
-        MitarbeiterDAO.update(m);
+
+        MitarbeiterDAO.insert(m);
         daten.setAll(MitarbeiterDAO.getAll());
     }
 

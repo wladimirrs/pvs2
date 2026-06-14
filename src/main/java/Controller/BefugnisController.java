@@ -1,16 +1,13 @@
 package Controller;
 
-import DAO.BefugnisDAO;
+import DAO.*;
 import Klassen.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import Klassen.Mitarbeiter;
 
 public class BefugnisController {
@@ -21,9 +18,9 @@ public class BefugnisController {
     @FXML private Button btnSuchen;
 
     @FXML private TextField txtEingabe; // Textfelder
-    @FXML private TextField txtMitarbeiterId;
-    @FXML private TextField txtProjektId;
-    @FXML private TextField txtRolle;
+    @FXML private ChoiceBox<Mitarbeiter> cbMitarbeiterId;
+    @FXML private ChoiceBox<Projekt> cbProjektId;
+    @FXML private ChoiceBox<Rolle> cbRolle;
 
     @FXML private TableView<Befugnis> tblBefugnis;    // Tabelle
     @FXML private TableColumn<Befugnis, Mitarbeiter> colMitarbeiterId;
@@ -36,6 +33,9 @@ public class BefugnisController {
         colMitarbeiterId.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getMitarbeiter_id()));
         colProjektId.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getProjekt_id()));
         colRolle.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getRolle()));
+        cbMitarbeiterId.setItems(FXCollections.observableArrayList(MitarbeiterDAO.getAll()));
+        cbProjektId.setItems(FXCollections.observableArrayList(ProjekteDAO.getAll()));
+        cbRolle.setItems(FXCollections.observableArrayList(RollenDAO.getAll()));
         daten = FXCollections.observableArrayList(BefugnisDAO.getAll());
         tblBefugnis.setItems(daten);
     }
@@ -46,16 +46,16 @@ public class BefugnisController {
 
     @FXML
     void aendern(ActionEvent event) {   // update
-        int mitarbeiter_id = Integer.parseInt(txtMitarbeiterId.getText());
-        int projekt_id = Integer.parseInt(txtProjektId.getText());
-        int rolle = Integer.parseInt(txtRolle.getText());
-        if (projekt_id == 0 || mitarbeiter_id == 0 ||  rolle == 0) {
+        Mitarbeiter mitarbeiter_id = cbMitarbeiterId.getValue();
+        Projekt projekt_id = cbProjektId.getValue();
+        Rolle rolle = cbRolle.getValue();
+        if (projekt_id == null || mitarbeiter_id == null ||  rolle == null) {
             return;
         }
         Befugnis b = new Befugnis(
-                MitarbeiterController.uebergebeMitarbeiter(mitarbeiter_id),
-                ProjekteController.uebergebeProjekt(projekt_id),
-                RollenController.uebergebeRolle(rolle)
+                mitarbeiter_id,
+                projekt_id,
+                rolle
         );
         BefugnisDAO.update(b);
         daten.setAll(BefugnisDAO.getAll());
@@ -63,14 +63,14 @@ public class BefugnisController {
 
     @FXML
     void einfuegen(ActionEvent event) { // insert
-        int projekt_id = Integer.parseInt(txtProjektId.getText());
-        int rolle = Integer.parseInt(txtRolle.getText());
-        if (projekt_id == 0 || rolle == 0) {
+        Projekt projekt_id = cbProjektId.getValue();
+        Rolle rolle = cbRolle.getValue();
+        if (projekt_id == null || rolle == null) {
             return;
         }
         Befugnis b = new Befugnis(
-                ProjekteController.uebergebeProjekt(projekt_id),
-                RollenController.uebergebeRolle(rolle)
+                projekt_id,
+                rolle
         );
         BefugnisDAO.insert(b);
         daten.setAll(BefugnisDAO.getAll());

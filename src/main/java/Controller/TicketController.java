@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.MitarbeiterDAO;
 import DAO.TicketDAO;
 import Klassen.Ticket;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -9,10 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import Klassen.Mitarbeiter;
 
 public class TicketController {
@@ -26,9 +24,9 @@ public class TicketController {
     @FXML private TextField txtId;  // Textfelder
     @FXML private TextField txtGrund;
     @FXML private TextField txtZeitpunkt;
-    @FXML private TextField txtAussteller1;
-    @FXML private TextField txtAussteller2;
-    @FXML private TextField txtSchuldig;
+    @FXML private ChoiceBox<Mitarbeiter> cbAussteller1;
+    @FXML private ChoiceBox<Mitarbeiter> cbAussteller2;
+    @FXML private ChoiceBox<Mitarbeiter> cbSchuldig;
 
     @FXML private TableView<Ticket> tblTicket;  // Tabelle
     @FXML private TableColumn<Ticket, Integer> colId;
@@ -48,6 +46,9 @@ public class TicketController {
         colAussteller1.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getAussteller1()));
         colAussteller2.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getAussteller2()));
         colSchuldig.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getSchuldig()));
+        cbAussteller1.setItems(FXCollections.observableArrayList(MitarbeiterDAO.getAll()));
+        cbAussteller2.setItems(FXCollections.observableArrayList(MitarbeiterDAO.getAll()));
+        cbSchuldig.setItems(FXCollections.observableArrayList(MitarbeiterDAO.getAll()));
         daten = FXCollections.observableArrayList(TicketDAO.getAll());
         tblTicket.setItems(daten);
     }
@@ -65,16 +66,16 @@ public class TicketController {
                 || zeitpunkt == null || zeitpunkt.isBlank()) {
             return;
         }
-        int aussteller1 = Integer.parseInt(txtAussteller1.getText());
-        int aussteller2 = Integer.parseInt(txtAussteller2.getText());
-        int schuldig = Integer.parseInt(txtSchuldig.getText());
+        Mitarbeiter aussteller1 = cbAussteller1.getValue();
+        Mitarbeiter aussteller2 = cbAussteller2.getValue();
+        Mitarbeiter schuldig = cbAussteller1.getValue();
         Ticket t = new Ticket(
                 id,
                 grund,
                 zeitpunkt,
-                MitarbeiterController.uebergebeMitarbeiter(aussteller1),
-                MitarbeiterController.uebergebeMitarbeiter(aussteller2),
-                MitarbeiterController.uebergebeMitarbeiter(schuldig)
+                aussteller1,
+                aussteller2,
+                schuldig
         );
         TicketDAO.update(t);
         daten.setAll(TicketDAO.getAll());
@@ -88,15 +89,15 @@ public class TicketController {
                 || zeitpunkt == null || zeitpunkt.isBlank()) {
             return;
         }
-        int aussteller1 = Integer.parseInt(txtAussteller1.getText());
-        int aussteller2 = Integer.parseInt(txtAussteller2.getText());
-        int schuldig = Integer.parseInt(txtSchuldig.getText());
+        Mitarbeiter aussteller1 = cbAussteller1.getValue();
+        Mitarbeiter aussteller2 = cbAussteller2.getValue();
+        Mitarbeiter schuldig = cbAussteller1.getValue();
         Ticket t = new Ticket(
                 grund,
                 zeitpunkt,
-                MitarbeiterController.uebergebeMitarbeiter(aussteller1),
-                MitarbeiterController.uebergebeMitarbeiter(aussteller2),
-                MitarbeiterController.uebergebeMitarbeiter(schuldig)
+                aussteller1,
+                aussteller2,
+                schuldig
         );
         TicketDAO.insert(t);
         daten.setAll(TicketDAO.getAll());

@@ -1,7 +1,11 @@
 package Controller;
 
 import DAO.LeitungDAO;
+import DAO.MitarbeiterDAO;
+import DAO.ProjekteDAO;
+import DAO.RollenDAO;
 import Klassen.Leitung;
+import Klassen.Ort;
 import Klassen.Projekt;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -10,10 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import Klassen.Mitarbeiter;
 
 public class LeitungController {
@@ -25,8 +26,8 @@ public class LeitungController {
 
     @FXML private TextField txtEingabe; // Textfelder
     @FXML private TextField txtId;
-    @FXML private TextField txtProjektId;
-    @FXML private TextField txtMitarbeiterId;
+    @FXML private ChoiceBox<Projekt> cbProjektId;
+    @FXML private ChoiceBox<Mitarbeiter> cbMitarbeiterId;
     @FXML private TextField txtVon;
     @FXML private TextField txtBis;
 
@@ -45,6 +46,8 @@ public class LeitungController {
         colMitarbeiterId.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getMitarbeiter_id()));
         colVon.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getVon()));
         colBis.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getBis()));
+        cbProjektId.setItems(FXCollections.observableArrayList(ProjekteDAO.getAll()));
+        cbMitarbeiterId.setItems(FXCollections.observableArrayList(MitarbeiterDAO.getAll()));
         daten = FXCollections.observableArrayList(LeitungDAO.getAll());
         tblLeitung.setItems(daten);
     }
@@ -56,17 +59,17 @@ public class LeitungController {
     @FXML
     void aendern(ActionEvent event) {   // update
         int id = Integer.parseInt(txtId.getText());
-        int projekt_id = Integer.parseInt(txtProjektId.getText());
-        int mitarbeiter_id = Integer.parseInt(txtMitarbeiterId.getText());
-        if (projekt_id == 0 || mitarbeiter_id == 0) {
+        Projekt projekt_id = cbProjektId.getValue();
+        Mitarbeiter mitarbeiter_id = cbMitarbeiterId.getValue();
+        if (projekt_id == null || mitarbeiter_id == null) {
             return;
         }
         String von = txtVon.getText();
         String bis = txtBis.getText();
         Leitung p = new Leitung(
                 id,
-                ProjekteController.uebergebeProjekt(projekt_id),
-                MitarbeiterController.uebergebeMitarbeiter(mitarbeiter_id),
+                projekt_id,
+                mitarbeiter_id,
                 von,
                 bis
         );
@@ -76,16 +79,16 @@ public class LeitungController {
 
     @FXML
     void einfuegen(ActionEvent event) { // insert
-        int projekt_id = Integer.parseInt(txtProjektId.getText());
-        int mitarbeiter_id = Integer.parseInt(txtMitarbeiterId.getText());
-        if (projekt_id == 0 || mitarbeiter_id == 0) {
+        Projekt projekt_id = cbProjektId.getValue();
+        Mitarbeiter mitarbeiter_id = cbMitarbeiterId.getValue();
+        if (projekt_id == null || mitarbeiter_id == null) {
             return;
         }
         String von = txtVon.getText();
         String bis = txtBis.getText();
         Leitung l = new Leitung(
-                ProjekteController.uebergebeProjekt(projekt_id),
-                MitarbeiterController.uebergebeMitarbeiter(mitarbeiter_id),
+                projekt_id,
+                mitarbeiter_id,
                 von,
                 bis
         );
