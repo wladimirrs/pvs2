@@ -4,7 +4,7 @@ import Controller.ProjekteController;
 import Controller.RollenController;
 import Klassen.Befugnis;
 import pvs.DB;
-import pvs.MitarbeiterController;
+import Controller.MitarbeiterController;
 
 import java.sql.*;
 import java.util.ArrayList;

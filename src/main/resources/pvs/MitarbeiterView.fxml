@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pvs.MitarbeiterController">
+            fx:controller="Controller.MitarbeiterController">
 
     <children>
 
@@ -30,7 +30,7 @@
         </TableView>
 
         <TextField fx:id="txtEingabe" promptText="Mitarbeiter suchen" layoutX="220.0" layoutY="59.0" prefWidth="200.0"/>
-        <TextField fx:id="txtId" promptText="Mitarbeiter-ID" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="txtId" promptText="Mitarbeiter-ID (beim Ändern)" layoutX="69.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtNachname" promptText="Nachname" layoutX="69.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtVorname" promptText="Vorname" layoutX="249.0" layoutY="729.0" prefHeight="26.0" prefWidth="156.0" />
         <TextField fx:id="txtPersonalnummer" promptText="Personalnummer" layoutX="249.0" layoutY="756.0" prefHeight="26.0" prefWidth="156.0" />

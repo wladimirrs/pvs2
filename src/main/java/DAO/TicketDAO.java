@@ -2,7 +2,7 @@ package DAO;
 
 import Klassen.Ticket;
 import pvs.DB;
-import pvs.MitarbeiterController;
+import Controller.MitarbeiterController;
 
 import java.sql.*;
 import java.util.ArrayList;

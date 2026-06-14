@@ -1,7 +1,5 @@
 package Klassen;
 
-import pvs.Mitarbeiter;
-
 public class Befugnis {
 
     Mitarbeiter mitarbeiter_id; // Attribute

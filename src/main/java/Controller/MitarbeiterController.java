@@ -1,12 +1,13 @@
-package pvs;
+package Controller;
 
-import Controller.VertragstypenController;
-import DAO.OrteDAO;
-import DAO.RessortsDAO;
-import DAO.VertragstypenDAO;
+import DAO.*;
+import Klassen.Mitarbeiter;
 import Klassen.Ort;
 import Klassen.Ressort;
 import Klassen.Vertragstyp;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,33 +16,16 @@ import javafx.scene.control.*;
 
 public class MitarbeiterController {
 
-    @FXML
+    @FXML                       // Buttons
     private Button btnAendern;
-
     @FXML
     private Button btnEinfuegen;
-
     @FXML
     private Button btnLoeschen;
-
     @FXML
     private Button btnSuchen;
 
-
-    @FXML private TableView<Mitarbeiter> tblMitarbeiter;        // Tabelle
-
-    @FXML private TableColumn<Mitarbeiter, Number> colId;             // Tabellenspalten
-    @FXML private TableColumn<Mitarbeiter, String> colNachname;
-    @FXML private TableColumn<Mitarbeiter, String> colVorname;
-    @FXML private TableColumn<Mitarbeiter, String> colPersonallnummer;
-    @FXML private TableColumn<Mitarbeiter, String> colStrasse;
-    @FXML private TableColumn<Mitarbeiter, String> colHausnummer;
-    @FXML private TableColumn<Mitarbeiter, String> colGeburtsdatum;
-    @FXML private TableColumn<Mitarbeiter, Ort> colOrt;
-    @FXML private TableColumn<Mitarbeiter, Ressort> colRessort;
-    @FXML private TableColumn<Mitarbeiter, Vertragstyp> colVertragstyp;
-
-    @FXML private TextField txtEingabe;                         // Eingabefelder
+    @FXML private TextField txtEingabe;     // Eingabefelder
     @FXML private TextField txtId;
     @FXML private TextField txtNachname;
     @FXML private TextField txtVorname;
@@ -53,35 +37,39 @@ public class MitarbeiterController {
     @FXML private TextField txtRessort;
     @FXML private TextField txtVertragstyp;
 
-    private ObservableList<Mitarbeiter> daten;
+    @FXML private TableView<Mitarbeiter> tblMitarbeiter;        // Tabelle
+    @FXML private TableColumn<Mitarbeiter, Integer> colId;
+    @FXML private TableColumn<Mitarbeiter, String> colNachname;
+    @FXML private TableColumn<Mitarbeiter, String> colVorname;
+    @FXML private TableColumn<Mitarbeiter, String> colPersonallnummer;
+    @FXML private TableColumn<Mitarbeiter, String> colStrasse;
+    @FXML private TableColumn<Mitarbeiter, String> colHausnummer;
+    @FXML private TableColumn<Mitarbeiter, String> colGeburtsdatum;
+    @FXML private TableColumn<Mitarbeiter, Ort> colOrt;
+    @FXML private TableColumn<Mitarbeiter, Ressort> colRessort;
+    @FXML private TableColumn<Mitarbeiter, Vertragstyp> colVertragstyp;
 
-
-
-
-
-
-
+    private ObservableList<Mitarbeiter> daten;  // Tabelle befüllen
     @FXML
     public void initialize() {      // Spalten setzen
-
-        colId.setCellValueFactory(data -> data.getValue().idProperty());
-        colNachname.setCellValueFactory(data -> data.getValue().nachnameProperty());
-        colVorname.setCellValueFactory(data -> data.getValue().vornameProperty());
-        colPersonallnummer.setCellValueFactory(data -> data.getValue().personalnummerProperty());
-        colStrasse.setCellValueFactory(data -> data.getValue().strasseProperty());
-        colHausnummer.setCellValueFactory(data -> data.getValue().hausnummerProperty());
-        colGeburtsdatum.setCellValueFactory(data -> data.getValue().geburtsdatumProperty());
-        colOrt.setCellValueFactory(data -> data.getValue().ortProperty());
-        colRessort.setCellValueFactory(data -> data.getValue().ressortProperty());
-        colVertragstyp.setCellValueFactory(data -> data.getValue().vertragstypProperty());
-        daten = MitarbeiterDAO.getAll();
+        colId.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getId()).asObject());
+        colNachname.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNachname()));
+        colVorname.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getVorname()));
+        colPersonallnummer.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPersonalnummer()));
+        colStrasse.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStrasse()));
+        colHausnummer.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getHausnummer()));
+        colGeburtsdatum.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getGeburtsdatum()));
+        colOrt.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getOrt()));
+        colRessort.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getRessort()));
+        colVertragstyp.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getVertragstyp()));
+        daten = FXCollections.observableArrayList(MitarbeiterDAO.getAll());
         tblMitarbeiter.setItems(daten);
     }
 
 
 
     @FXML
-    void einfuegen(ActionEvent event) {     // Inhalt aus den Eingabefeldern entnehmen
+    void einfuegen(ActionEvent event) {     // insert
         String nachname = txtNachname.getText();
         String vorname = txtVorname.getText();
         String personalnummer = txtPersonalnummer.getText();
@@ -101,9 +89,9 @@ public class MitarbeiterController {
                 strasse,
                 hausnummer,
                 geburtsdatum,
-                OrteDAO.getOrtById(ort),       // da Foreign Key
-                RessortsDAO.getRessortById(ressort),
-                VertragstypenDAO.getVertragstypById(vertragstyp)
+                OrteController.uebergebeOrt(ort),       // da Foreign Key
+                RessortsController.uebergebeRessort(ressort),
+                VertragstypenController.uebergebeVertragstyp(vertragstyp)
         );
         MitarbeiterDAO.insert(m);
         daten.setAll(MitarbeiterDAO.getAll());
@@ -119,7 +107,7 @@ public class MitarbeiterController {
     }
 
     @FXML
-    void aendern(ActionEvent event) {
+    void aendern(ActionEvent event) {   // update
         int id = Integer.parseInt(txtId.getText());
         String nachname = txtNachname.getText();
         String vorname = txtVorname.getText();
@@ -141,16 +129,16 @@ public class MitarbeiterController {
                 strasse,
                 hausnummer,
                 geburtsdatum,
-                OrteDAO.getOrtById(ort),
-                RessortsDAO.getRessortById(ressort),
-                VertragstypenDAO.getVertragstypById(vertragstyp)
+                OrteController.uebergebeOrt(ort),
+                RessortsController.uebergebeRessort(ressort),
+                VertragstypenController.uebergebeVertragstyp(vertragstyp)
         );
         MitarbeiterDAO.update(m);
         daten.setAll(MitarbeiterDAO.getAll());
     }
 
     @FXML
-    void suchen(ActionEvent event) {
+    void suchen(ActionEvent event) {    // Suche
         String query = txtEingabe.getText().toLowerCase();
         if (query.isBlank()) {
             tblMitarbeiter.setItems(daten);
@@ -158,27 +146,28 @@ public class MitarbeiterController {
         }
         ObservableList<Mitarbeiter> gefiltert = FXCollections.observableArrayList(
                 daten.stream()
-                        .filter(m ->        // Suche nicht nach id
+                        .filter(m ->
+                                (m.getId() != 0 && String.valueOf(m.getId()).contains(query)) ||
                                 (m.getNachname() != null && m.getNachname().toLowerCase().contains(query)) ||
                                         (m.getVorname() != null && m.getVorname().toLowerCase().contains(query)) ||
                                         (m.getPersonalnummer() != null && m.getPersonalnummer().toLowerCase().contains(query)) ||
                                         (m.getStrasse() != null && m.getStrasse().toLowerCase().contains(query)) ||
                                         (m.getHausnummer() != null && m.getHausnummer().toLowerCase().contains(query)) ||
                                         (m.getGeburtsdatum() != null && m.getGeburtsdatum().toLowerCase().contains(query)) ||
-                                        (m.getOrt() != null && m.getOrt().toString().toLowerCase().contains(query)) ||
-                                        (m.getRessort() != null && m.getRessort().toString().toLowerCase().contains(query)) ||
-                                        (m.getVertragstyp() != null && m.getVertragstyp().toString().toLowerCase().contains(query))
+                                        (m.getOrt() != null && String.valueOf(m.getOrt()).contains(query)) ||
+                                        (m.getRessort() != null && String.valueOf(m.getRessort()).contains(query)) ||
+                                        (m.getVertragstyp() != null && String.valueOf(m.getVertragstyp()).contains(query))
                         )
                         .toList()
         );
         tblMitarbeiter.setItems(gefiltert);
     }
 
-    public static Mitarbeiter uebergebeMitarbeiter(int id) {    // Vertragstyp übergeben
+    public static Mitarbeiter uebergebeMitarbeiter(int id) {    // Mitarbeiter übergeben
         Mitarbeiter m = MitarbeiterDAO.getMitarbeiterById(id);
         if (m == null) {
             throw new IllegalArgumentException(
-                    "Ungültige Vertrags-ID: " + id);
+                    "Ungültige Mitarbeiter-ID: " + id);
         }
         return new Mitarbeiter(
                 m.getId(),

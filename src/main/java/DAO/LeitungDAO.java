@@ -3,7 +3,7 @@ package DAO;
 import Controller.ProjekteController;
 import Klassen.Leitung;
 import pvs.DB;
-import pvs.MitarbeiterController;
+import Controller.MitarbeiterController;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,19 +1,22 @@
-package pvs;
+package DAO;
 
 import Controller.OrteController;
 import Controller.RessortsController;
 import Controller.VertragstypenController;
-import Klassen.Vertragstyp;
+import Klassen.Mitarbeiter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import pvs.DB;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MitarbeiterDAO {
 
 
-    public static ObservableList<Mitarbeiter> getAll() {
-        ObservableList<Mitarbeiter> list = FXCollections.observableArrayList();
+    public static List<Mitarbeiter> getAll() {  // Suche
+        List<Mitarbeiter> list = new ArrayList<>();
         String sql = "SELECT * FROM mitarbeiter";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -33,25 +36,25 @@ public class MitarbeiterDAO {
                 );
                 list.add(m);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Fehler bei der Suche: " + e.getMessage());
         }
         return list;
     }
 
-    public static void delete(int id) {
+    public static void delete(int id) { // Löschen
         String sql = "DELETE FROM mitarbeiter WHERE id = ?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Löschen: " + e.getMessage());
         }
     }
 
 
-    public static void insert(Mitarbeiter m) {
+    public static void insert(Mitarbeiter m) {  // Einfügen
         String sql = "INSERT INTO mitarbeiter (nachname, vorname, personalnummer, strasse, hausnummer, geburtsdatum, ort, ressort, vertragstyp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -61,17 +64,17 @@ public class MitarbeiterDAO {
             ps.setString(4, m.getStrasse());
             ps.setString(5, m.getHausnummer());
             ps.setString(6, m.getGeburtsdatum());
-            ps.setInt(7, m.getOrt().get().getId());
-            ps.setInt(8, m.getRessort().get().getId());
-            ps.setInt(9, m.getVertragstyp().get().getId());
+            ps.setObject(7, m.getOrt());
+            ps.setObject(8, m.getRessort());
+            ps.setObject(9, m.getVertragstyp());
             ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Einfügen: " + e.getMessage());
         }
     }
 
 
-    public static void update(Mitarbeiter m) {
+    public static void update(Mitarbeiter m) {  // Ändern
         String sql = "UPDATE mitarbeiter SET nachname=?, vorname=?, personalnummer=?, strasse=?, hausnummer=?, geburtsdatum=?, ort=?, ressort=?, vertragstyp=? WHERE id=?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -81,20 +84,20 @@ public class MitarbeiterDAO {
             ps.setString(4, m.getStrasse());
             ps.setString(5, m.getHausnummer());
             ps.setString(6, m.getGeburtsdatum());
-            ps.setInt(7, m.getOrt().get().getId());
-            ps.setInt(8, m.getRessort().get().getId());
-            ps.setInt(9, m.getVertragstyp().get().getId());
+            ps.setObject(7, m.getOrt());
+            ps.setObject(8, m.getRessort());
+            ps.setObject(9, m.getVertragstyp());
             ps.setInt(10, m.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Ändern: " + e.getMessage());
         }
     }
 
 
 
     public static Mitarbeiter getMitarbeiterById(int id) {    // Vertragstyp suchen nach Id
-        String sql = "SELECT * FROM vertragstypen WHERE id = ?";
+        String sql = "SELECT * FROM mitarbeiter WHERE id = ?";
         try (Connection con = DB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
