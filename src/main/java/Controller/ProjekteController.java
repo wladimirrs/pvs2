@@ -1,9 +1,7 @@
 package Controller;
 
 import DAO.ProjekteDAO;
-import DAO.RessortsDAO;
 import Klassen.Projekt;
-import Klassen.Ressort;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

@@ -1,9 +1,7 @@
 package Controller;
 
 import DAO.LeitungDAO;
-import DAO.OrteDAO;
 import Klassen.Leitung;
-import Klassen.Ort;
 import Klassen.Projekt;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;

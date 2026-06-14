@@ -15,6 +15,7 @@ public class DashboardController {
     @FXML
     private Button btnLogout;
 
+
     @FXML
     private Button btnHome;     // Navigation
 
@@ -22,10 +23,16 @@ public class DashboardController {
     private Button btnMitarbeiter;
 
     @FXML
-    private Button btnTickets;
+    private Button btnBefugnis;
 
     @FXML
     private Button btnProjekte;
+
+    @FXML
+    private Button btnLeitung;
+
+    @FXML
+    private Button btnTickets;
 
     @FXML
     private Button btnOrte;
@@ -37,7 +44,9 @@ public class DashboardController {
     private Button btnVertragstypen;
 
     @FXML
-    private Button btnProjektdaten;
+    private Button btnRollen;
+
+
 
     @FXML                       // Fenster content und main (Mitte und oben)
     private AnchorPane contentPane;
@@ -52,7 +61,7 @@ public class DashboardController {
     @FXML
     void beenden(ActionEvent event) { // App beenden
         System.exit(0);
-    }
+    }   // Beenden
 
     @FXML
     void loadLogout(ActionEvent event) {
@@ -110,9 +119,9 @@ public class DashboardController {
 
 
     @FXML
-    void loadProjekte(ActionEvent event) { // Projekthistorie laden
+    void loadLeitung(ActionEvent event) { // Projekthistorie laden
         ViewLoader loader = new ViewLoader();
-        Pane view = loader.loadView("ProjektView");
+        Pane view = loader.loadView("LeitungView");
 
         if (view != null) {
             contentPane.getChildren().clear();
@@ -187,9 +196,43 @@ public class DashboardController {
 
 
     @FXML
-    void loadProjektdaten(ActionEvent event) { // Projekte laden
+    void loadProjekte(ActionEvent event) { // Projekte laden
         ViewLoader loader = new ViewLoader();
-        Pane view = loader.loadView("ProjektdatenView");
+        Pane view = loader.loadView("ProjektView");
+
+        if (view != null) {
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(view);
+
+            AnchorPane.setTopAnchor(view, 0.0);
+            AnchorPane.setBottomAnchor(view, 0.0);
+            AnchorPane.setLeftAnchor(view, 0.0);
+            AnchorPane.setRightAnchor(view, 0.0);
+        }
+    }
+
+
+    @FXML
+    void loadRollen(ActionEvent event) { // Projekte laden
+        ViewLoader loader = new ViewLoader();
+        Pane view = loader.loadView("RollenView");
+
+        if (view != null) {
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(view);
+
+            AnchorPane.setTopAnchor(view, 0.0);
+            AnchorPane.setBottomAnchor(view, 0.0);
+            AnchorPane.setLeftAnchor(view, 0.0);
+            AnchorPane.setRightAnchor(view, 0.0);
+        }
+    }
+
+
+    @FXML
+    void loadBefugnis(ActionEvent event) { // Projekte laden
+        ViewLoader loader = new ViewLoader();
+        Pane view = loader.loadView("BefugnisView");
 
         if (view != null) {
             contentPane.getChildren().clear();

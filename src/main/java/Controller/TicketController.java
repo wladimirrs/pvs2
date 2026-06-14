@@ -1,6 +1,5 @@
 package Controller;
 
-import DAO.LeitungDAO;
 import DAO.TicketDAO;
 import Klassen.Ticket;
 import javafx.beans.property.SimpleIntegerProperty;
